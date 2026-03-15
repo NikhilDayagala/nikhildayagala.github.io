@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nikhil Dayagala — Data Engineer | GenAI & AWS</title>
+  <!-- SEO & Social -->
+  <meta name="description" content="Nikhil Dayagala — Data Engineer with 12+ years experience. AWS Bedrock, GenAI systems, cloud-native data platforms. AWS DE II, 3x AWS Certified." />
+  <meta name="author" content="Nikhil Dayagala" />
+  <meta name="robots" content="index, follow" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Nikhil Dayagala — Data Engineer | GenAI & AWS" />
+  <meta property="og:description" content="12+ years building cloud-native data platforms and GenAI applications at AWS. 3x AWS Certified. See my work and recommendations." />
+  <meta property="og:url" content="https://nikhildayagala.com" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Nikhil Dayagala — Data Engineer | GenAI & AWS" />
+  <meta name="twitter:description" content="12+ years shipping cloud-native data platforms and GenAI applications. AWS DE II. 3x AWS Certified." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & ROOT ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:       #0b0f1a;
+      --bg2:      #101525;
+      --bg3:      #151c2e;
+      --surface:  #1a2238;
+      --border:   #232f4a;
+      --amber:    #f59e0b;
+      --amber2:   #fbbf24;
+      --teal:     #22d3ee;
+      --teal2:    #67e8f9;
+      --text:     #e2e8f0;
+      --muted:    #7d93b4;
+      --faint:    #334054;
+      --radius:   6px;
+      --mono:     'DM Mono', monospace;
+      --display:  'Syne', sans-serif;
+      --serif:    'Lora', serif;
+      --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--display);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NOISE GRAIN OVERLAY ──────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 999; opacity: 0.4;
+    }
+
+    /* ─── SCROLLBAR ────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--amber); border-radius: 2px; }
+
+    /* ─── NAV ──────────────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 3rem;
+      background: rgba(11, 15, 26, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(245,158,11,0.12);
+    }
+    .nav-logo {
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--amber); font-family: var(--mono); font-weight: 400;
+    }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+
+    /* ─── HERO ─────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 6rem 3rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-grid-bg {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(245,158,11,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,158,11,0.035) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-glow {
+      position: absolute; top: -10%; right: -5%;
+      width: 55vw; height: 70vh;
+      background: radial-gradient(ellipse at center, rgba(34,211,238,0.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-glow2 {
+      position: absolute; bottom: 0; left: -5%;
+      width: 40vw; height: 50vh;
+      background: radial-gradient(ellipse at center, rgba(245,158,11,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-content { position: relative; max-width: 820px; }
+    .hero-eyebrow {
+      font-family: var(--mono); font-size: 0.75rem; letter-spacing: 0.2em;
+      color: var(--amber); text-transform: uppercase; margin-bottom: 1.2rem;
+      display: flex; align-items: center; gap: 0.8rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 32px; height: 1px; background: var(--amber);
+    }
+    h1 {
+      font-size: clamp(3.2rem, 7vw, 6.5rem); font-weight: 800;
+      line-height: 1.0; letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+    }
+    h1 .accent { color: var(--amber); }
+    .hero-title2 {
+      font-size: clamp(1.4rem, 3vw, 2.4rem); font-weight: 400;
+      color: var(--muted); margin-bottom: 2rem; letter-spacing: -0.01em;
+    }
+    .hero-desc {
+      font-family: var(--serif); font-size: 1.08rem; color: var(--muted);
+      max-width: 600px; line-height: 1.75; margin-bottom: 2.5rem;
+    }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-bottom: 2.8rem; flex-wrap: wrap;
+    }
+    .stat { display: flex; flex-direction: column; }
+    .stat-num {
+      font-size: 2rem; font-weight: 800; color: var(--text);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--amber); }
+    .stat-label {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--muted); margin-top: 0.2rem;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.75rem 1.6rem; border-radius: var(--radius);
+      font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.12em;
+      text-transform: uppercase; text-decoration: none;
+      transition: all 0.2s; cursor: pointer; border: none;
+    }
+    .btn-primary {
+      background: var(--amber); color: #0b0f1a; font-weight: 400;
+    }
+    .btn-primary:hover { background: var(--amber2); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,158,11,0.35); transition: all var(--transition); }
+    .btn-primary { transition: all var(--transition); }
+    .btn-outline {
+      background: transparent; color: var(--teal);
+      border: 1px solid rgba(34,211,238,0.35);
+      transition: all var(--transition);
+    }
+    .btn-outline:hover {
+      background: rgba(34,211,238,0.08);
+      border-color: var(--teal); transform: translateY(-2px);
+    }
+
+    /* ─── SECTION SHARED ───────────────────────────────────────── */
+    section { padding: 4rem 3rem; }
+    .section-inner { max-width: 1080px; margin: 0 auto; }
+    .section-label {
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--amber);
+      margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.7rem;
+    }
+    .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); max-width: 80px; }
+    h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 700;
+      letter-spacing: -0.02em; line-height: 1.15; margin-bottom: 2rem;
+      color: var(--text);
+    }
+
+    /* ─── ABOUT ────────────────────────────────────────────────── */
+    #about { background: var(--bg2); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+    }
+    .about-text p {
+      font-family: var(--serif); color: var(--muted); line-height: 1.8;
+      margin-bottom: 1.2rem; font-size: 1.02rem;
+    }
+    .about-text p strong { color: var(--text); font-style: normal; }
+    .about-highlights { display: flex; flex-direction: column; gap: 1.2rem; }
+    .highlight-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.2rem 1.4rem;
+      position: relative; overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+    }
+    .highlight-card::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 3px; background: var(--amber);
+    }
+    .highlight-card:hover { border-color: rgba(245,158,11,0.4); transform: translateX(4px); }
+    .highlight-card h4 {
+      font-size: 0.82rem; font-weight: 700; color: var(--text); margin-bottom: 0.25rem;
+    }
+    .highlight-card p {
+      font-family: var(--mono); font-size: 0.7rem; color: var(--muted); line-height: 1.5;
+    }
+
+    /* ─── SKILLS ───────────────────────────────────────────────── */
+    #skills { background: var(--bg); }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem; }
+    .skill-group {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.6rem;
+      transition: border-color 0.2s;
+    }
+    .skill-group:hover { border-color: var(--faint); }
+    .skill-group-title {
+      font-family: var(--mono); font-size: 0.68rem; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--amber); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.5rem;
+    }
+    .skill-group-title .icon { font-size: 0.9rem; }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.45rem; }
+    .tag {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.05em;
+      padding: 0.3rem 0.65rem; border-radius: 3px;
+      background: var(--surface); border: 1px solid var(--border);
+      color: var(--muted); transition: all 0.15s;
+    }
+    .tag:hover { border-color: var(--teal); color: var(--teal2); }
+    .tag.hot {
+      border-color: rgba(245,158,11,0.3); color: var(--amber2);
+      background: rgba(245,158,11,0.06);
+    }
+
+    /* ─── EXPERIENCE ───────────────────────────────────────────── */
+    #experience { background: var(--bg2); }
+    .exp-timeline { position: relative; }
+    .exp-timeline::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+      width: 1px; background: var(--border);
+    }
+    .exp-item { padding-left: 2.5rem; margin-bottom: 3.5rem; position: relative; }
+    .exp-item::before {
+      content: ''; position: absolute; left: -5px; top: 0.45rem;
+      width: 11px; height: 11px; border-radius: 50%;
+      background: var(--amber); border: 2px solid var(--bg2);
+    }
+    .exp-header { margin-bottom: 1rem; }
+    .exp-company {
+      font-size: 1.3rem; font-weight: 700; color: var(--text); margin-bottom: 0.1rem;
+    }
+    .exp-role {
+      font-family: var(--serif); font-style: italic;
+      font-size: 1rem; color: var(--teal); margin-bottom: 0.3rem;
+    }
+    .exp-meta {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em;
+      color: var(--muted); text-transform: uppercase;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1rem; }
+    .exp-bullets li {
+      font-family: var(--serif); font-size: 0.95rem; color: var(--muted);
+      line-height: 1.7; display: flex; gap: 0.7rem;
+    }
+    .exp-bullets li::before {
+      content: '→'; color: var(--amber); flex-shrink: 0; margin-top: 0.05rem;
+      font-family: var(--mono); font-size: 0.8rem;
+    }
+    .exp-bullets li strong { color: var(--text); }
+    .exp-tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+    .exp-tag {
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.05em;
+      padding: 0.2rem 0.55rem; border-radius: 3px;
+      background: rgba(34,211,238,0.07); border: 1px solid rgba(34,211,238,0.18);
+      color: rgba(103,232,249,0.8);
+    }
+
+    /* ─── CERTIFICATIONS ───────────────────────────────────────── */
+    #certifications { background: var(--bg); }
+    .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.4rem; }
+    .cert-card {
+      background: var(--bg3); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.6rem;
+      display: flex; flex-direction: column; gap: 0.6rem;
+      transition: all 0.2s; position: relative; overflow: hidden;
+    }
+    .cert-card::after {
+      content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+      height: 2px; background: linear-gradient(90deg, var(--amber), transparent);
+      transform: scaleX(0); transform-origin: left; transition: transform 0.3s;
+    }
+    .cert-card:hover { border-color: rgba(245,158,11,0.3); transform: translateY(-3px); }
+    .cert-card:hover::after { transform: scaleX(1); }
+    .cert-badge {
+      width: 42px; height: 42px; border-radius: 8px;
+      background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; margin-bottom: 0.2rem;
+    }
+    .cert-title { font-size: 0.95rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .cert-org {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.1em;
+      color: var(--amber); text-transform: uppercase;
+    }
+    .cert-link {
+      font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em;
+      color: var(--teal); text-decoration: none; text-transform: uppercase;
+      margin-top: auto; display: flex; align-items: center; gap: 0.3rem;
+    }
+    .cert-link:hover { color: var(--teal2); }
+
+    /* ─── RECOMMENDATIONS ──────────────────────────────────────── */
+    #recommendations { background: var(--bg2); }
+    .rec-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+    .rec-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 1.8rem;
+      position: relative;
+    }
+    .rec-quote-mark {
+      font-family: var(--serif); font-size: 4rem; line-height: 0.8;
+      color: var(--amber); opacity: 0.25; margin-bottom: 0.5rem;
+      display: block;
+    }
+    .rec-text {
+      font-family: var(--serif); font-style: italic;
+      font-size: 0.95rem; color: var(--muted); line-height: 1.75;
+      margin-bottom: 1.2rem;
+    }
+    .rec-author { display: flex; align-items: center; gap: 0.8rem; }
+    .rec-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--amber) 0%, var(--teal) 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem; font-weight: 700; color: var(--bg); flex-shrink: 0;
+    }
+    .rec-author-info { display: flex; flex-direction: column; }
+    .rec-author-name { font-size: 0.85rem; font-weight: 700; color: var(--text); }
+    .rec-author-role { font-family: var(--mono); font-size: 0.62rem; color: var(--muted); }
+    .rec-placeholder {
+      border: 1px dashed var(--border); background: transparent;
+      display: flex; align-items: center; justify-content: center;
+      min-height: 180px; color: var(--faint);
+      font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.1em;
+      text-transform: uppercase; text-align: center; flex-direction: column; gap: 0.5rem;
+    }
+    .rec-placeholder .ph-icon { font-size: 1.4rem; opacity: 0.4; }
+
+    /* ─── CONTACT ──────────────────────────────────────────────── */
+    #contact {
+      background: var(--bg);
+      text-align: center; padding: 6rem 3rem;
+    }
+    #contact .section-label { justify-content: center; }
+    #contact .section-label::after { display: none; }
+    #contact h2 { text-align: center; margin-bottom: 1rem; }
+    .contact-sub {
+      font-family: var(--serif); color: var(--muted); font-size: 1.05rem;
+      margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto;
+      line-height: 1.7;
+    }
+    .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    /* ─── FOOTER ───────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 3rem;
+      display: flex; align-items: center; justify-content: center;
+      background: var(--bg);
+    }
+    .footer-copy {
+      font-family: var(--mono); font-size: 0.65rem; color: var(--faint);
+      letter-spacing: 0.1em;
+    }
+    .footer-status {
+      display: flex; align-items: center; gap: 0.5rem;
+      font-family: var(--mono); font-size: 0.65rem; color: var(--muted);
+    }
+    .status-dot {
+      width: 6px; height: 6px; border-radius: 50%; background: #22c55e;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+
+    /* ─── ANIMATIONS ───────────────────────────────────────────── */
+    .fade-up {
+      opacity: 0; transform: translateY(28px);
+      animation: fadeUp 0.7s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.34s; }
+    .delay-4 { animation-delay: 0.46s; }
+    .delay-5 { animation-delay: 0.58s; }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.65s cubic-bezier(0.4,0,0.2,1), transform 0.65s cubic-bezier(0.4,0,0.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── SCROLL INDICATOR ─────────────────────────────────────── */
+    .scroll-hint {
+      position: absolute; bottom: 2rem; left: 50%;
+      transform: translateX(-50%);
+      display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+      color: var(--faint); font-family: var(--mono); font-size: 0.62rem;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      animation: fadeUp 1s ease 1s both;
+    }
+    .scroll-line {
+      width: 1px; height: 44px;
+      background: linear-gradient(to bottom, var(--amber), transparent);
+      animation: scrollLine 2s ease-in-out infinite;
+    }
+    @keyframes scrollLine {
+      0%   { transform: scaleY(0); transform-origin: top; }
+      50%  { transform: scaleY(1); transform-origin: top; }
+      51%  { transform: scaleY(1); transform-origin: bottom; }
+      100% { transform: scaleY(0); transform-origin: bottom; }
+    }
+    @keyframes heroPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.75); }
+    }
+    .hero-eyebrow-dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+      background: var(--amber); margin-right: 0.5rem;
+      animation: heroPulse 2s ease-in-out infinite;
+      vertical-align: middle;
+    }
+
+    /* ─── BACK TO TOP ──────────────────────────────────────────── */
+    #back-to-top {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 200;
+      width: 42px; height: 42px; border-radius: 50%;
+      background: var(--amber); color: var(--bg);
+      border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transform: translateY(12px);
+      transition: opacity var(--transition), transform var(--transition), background var(--transition);
+      pointer-events: none;
+    }
+    #back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
+    #back-to-top:hover { background: var(--amber2); transform: translateY(-3px); }
+
+    /* ─── RESPONSIVE ───────────────────────────────────────────── */
+    /* ─── PROJECTS ─────────────────────────────────────────────── */
+    #projects { background: var(--bg3); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+      gap: 1.8rem;
+    }
+    .project-card {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 2rem;
+      display: flex; flex-direction: column; gap: 1rem;
+      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
+      position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--amber), var(--teal));
+    }
+    .project-card:hover { border-color: rgba(245,158,11,0.35); transform: translateY(-3px); }
+    .project-label {
+      font-family: var(--mono); font-size: 0.62rem; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem;
+    }
+    .project-title { font-size: 1.1rem; font-weight: 700; color: var(--text); line-height: 1.3; }
+    .project-company {
+      font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.1em;
+      color: var(--muted); text-transform: uppercase; margin-top: 0.2rem;
+    }
+    .project-impact { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .impact-pill {
+      font-family: var(--mono); font-size: 0.64rem; letter-spacing: 0.04em;
+      padding: 0.28rem 0.7rem; border-radius: 20px;
+      background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.25);
+      color: var(--amber2);
+    }
+    .project-desc {
+      font-family: var(--serif); font-size: 0.93rem; color: var(--muted); line-height: 1.75;
+    }
+    .project-arch {
+      font-family: var(--mono); font-size: 0.67rem; color: var(--faint);
+      letter-spacing: 0.04em; line-height: 1.8;
+      border-left: 2px solid var(--border); padding-left: 0.8rem;
+    }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: auto; }
+    @media (max-width: 600px) { .projects-grid { grid-template-columns: 1fr; } }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.2rem; }
+      section { padding: 3rem 1.5rem; }
+      #hero { padding: 6rem 1.5rem 4rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+    @media (max-width: 540px) {
+      .nav-links {
+        display: none; flex-direction: column; gap: 0;
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(11,15,26,0.97); backdrop-filter: blur(20px);
+        justify-content: center; align-items: center; z-index: 99;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.2rem; padding: 1rem 0; letter-spacing: 0.12em; }
+      .hero-stats { gap: 1.5rem; }
+    }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; z-index: 101; background: none; border: none;
+      padding: 0.4rem;
+    }
+    .hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--amber); transition: all 0.25s; border-radius: 2px;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    @media (max-width: 540px) {
+      .hamburger { display: flex; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">ND // Portfolio</span>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" role="list" aria-label="Main navigation">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#recommendations">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://github.com/NikhilDayagala" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="hero-content">
+      <h1 class="fade-up delay-1">Nikhil<br /><span class="accent">Dayagala</span></h1>
+      <p class="hero-title2 fade-up delay-2">Data Engineer · Cloud Engineer · GenAI Builder</p>
+      <p class="hero-desc fade-up delay-3">
+        12 years architecting data systems at scale — from mission-critical TIER 1
+        infrastructure at Rocket Mortgage to GenAI platforms on Amazon Bedrock at AWS.
+        I design systems other teams build on top of, and I ship them to production.
+      </p>
+      <div class="hero-stats fade-up delay-4">
+        <div class="stat">
+          <span class="stat-num">12<span>+</span></span>
+          <span class="stat-label">Years experience</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">3<span>×</span></span>
+          <span class="stat-label">AWS Certified</span>
+        </div>
+      </div>
+      <div class="hero-ctas fade-up delay-5">
+        <a href="mailto:dayagalanikhil@gmail.com" class="btn btn-primary">Get in touch ↗</a>
+        <a href="https://linkedin.com/in/NikhilDayagala" target="_blank" rel="noopener noreferrer" class="btn btn-outline">LinkedIn →</a>
+<a href="https://github.com/NikhilDayagala" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      scroll
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label reveal">About</p>
+      <h2 class="reveal">Architecting the platforms<br/>other teams build on top of.</h2>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            I'm a senior data engineer with over a decade of experience architecting <strong>cloud-native 
+            data platforms</strong> and — more recently — production-grade <strong>GenAI applications</strong> 
+            at AWS. My work sits at the intersection of infrastructure, intelligence, and impact.
+          </p>
+          <p>
+            At AWS, I designed the end-to-end microservices backbone for an AI-powered field seller chatbot 
+            using Amazon Bedrock, built ML pipelines that cut document processing time by 83%, and engineered 
+            automation that eliminated over 6 FTE of monthly manual work — all in one team.
+          </p>
+          <p>
+            Before AWS, I spent seven years at Rocket Mortgage as a senior data engineer — owning TIER 1 
+            mission-critical systems, leading cloud migrations, and architecting an ETL framework that was 
+            adopted org-wide as the company standard.
+          </p>
+          <p>
+            What I bring beyond technical depth: <strong>a track record of shipping things that matter</strong>. 
+            Not prototypes — production systems that show up in leadership MBRs and OP1 reviews.
+          </p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-card reveal">
+            <h4>🤖 GenAI & Bedrock Experience</h4>
+            <p>Shipped real GenAI products using Amazon Bedrock, Claude 3, LangChain, RAG pipelines, and vector databases — not just experimented with them.</p>
+          </div>
+          <div class="highlight-card reveal">
+            <h4>☁️ Deep AWS Expertise</h4>
+            <p>3x AWS certified. Hands-on across Redshift, Glue, Lambda, MWAA, DynamoDB, Kinesis, QuickSight, CDK, and more — in production, at scale.</p>
+          </div>
+          <div class="highlight-card reveal">
+            <h4>⚡ Performance Engineering</h4>
+            <p>From 40-minute syncs to 4.5 minutes. From 29-second API timeouts to sub-10s. From 14-day publishing cycles to 2 days. Impact is measurable.</p>
+          </div>
+          <div class="highlight-card reveal">
+            <h4>🏗️ Platform Builder</h4>
+            <p>Built org-adopted frameworks, not just pipelines. Led on-prem-to-cloud migrations for 30+ databases. Designed systems others build on top of.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-inner">
+      <p class="section-label reveal">Core Skills</p>
+      <h2 class="reveal">The full stack, top to bottom.</h2>
+      <div class="skills-grid reveal">
+
+        <div class="skill-group">
+          <div class="skill-group-title"><span class="icon">☁️</span> AWS Cloud Platform</div>
+          <div class="skill-tags">
+            <span class="tag hot">Amazon Bedrock</span>
+            <span class="tag hot">Redshift</span>
+            <span class="tag">S3</span>
+            <span class="tag">AWS Glue</span>
+            <span class="tag">Lambda</span>
+            <span class="tag">MWAA / Airflow</span>
+            <span class="tag">DynamoDB</span>
+            <span class="tag">Kinesis</span>
+            <span class="tag">EMR</span>
+            <span class="tag">Fargate</span>
+            <span class="tag">QuickSight</span>
+            <span class="tag">Lake Formation</span>
+            <span class="tag">Athena</span>
+            <span class="tag">CloudFormation</span>
+            <span class="tag">CDK</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title"><span class="icon">🤖</span> GenAI & ML</div>
+          <div class="skill-tags">
+            <span class="tag hot">Amazon Bedrock</span>
+            <span class="tag hot">Claude Models</span>
+            <span class="tag hot">RAG Pipelines</span>
+            <span class="tag hot">Prompt Engineering</span>
+            <span class="tag">LangChain</span>
+            <span class="tag">Llama 2</span>
+            <span class="tag">Vector Databases</span>
+            <span class="tag">OpenSearch</span>
+            <span class="tag">Neptune GraphDB</span>
+            <span class="tag">Amazon Kendra</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title"><span class="icon">🔧</span> Data Engineering</div>
+          <div class="skill-tags">
+            <span class="tag hot">Apache Spark / PySpark</span>
+            <span class="tag hot">Apache Airflow</span>
+            <span class="tag">dbt</span>
+            <span class="tag">Apache Iceberg</span>
+            <span class="tag">SSIS / SSRS</span>
+            <span class="tag">Dimensional Modeling</span>
+            <span class="tag">ETL / ELT</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title"><span class="icon">🗄️</span> Databases</div>
+          <div class="skill-tags">
+            <span class="tag">Redshift</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">SQL Server</span>
+            <span class="tag">Aurora MySQL</span>
+            <span class="tag">DynamoDB</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">RDS</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title"><span class="icon">💻</span> Languages & Frameworks</div>
+          <div class="skill-tags">
+            <span class="tag hot">Python</span>
+            <span class="tag hot">SQL</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">C#</span>
+            <span class="tag">GraphQL</span>
+            <span class="tag">REST APIs</span>
+            <span class="tag">Pandas / NumPy</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="skill-group-title"><span class="icon">🚀</span> DevOps & Infrastructure</div>
+          <div class="skill-tags">
+            <span class="tag">Terraform</span>
+            <span class="tag">AWS CDK</span>
+            <span class="tag">CodePipeline</span>
+            <span class="tag">Git / GitHub</span>
+            <span class="tag">Grafana</span>
+            <span class="tag">Redgate</span>
+            <span class="tag">Flyway</span>
+            <span class="tag">CI/CD</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-inner">
+      <p class="section-label reveal">Experience</p>
+      <h2 class="reveal">Where I've built things<br/><span style="font-size:clamp(1rem,2vw,1.5rem);font-weight:400;color:var(--muted);">12+ years building data systems — from on-prem SQL to cloud-native AWS to production GenAI.</span></h2>
+      <div class="exp-timeline">
+
+        <!-- AWS -->
+        <div class="exp-item reveal">
+          <div class="exp-header">
+            <div class="exp-company">Amazon Web Services (AWS)</div>
+            <div class="exp-role">Data Engineer II — Worldwide Field Enablement</div>
+            <div class="exp-meta">Detroit, MI &nbsp;·&nbsp; Jan 2023 – Present</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>
+              <span>
+                <strong>GenAI Chatbot Architecture (Field 360):</strong> Designed end-to-end microservices for an 
+                AI-powered field seller chatbot using Bedrock Knowledge Bases, DynamoDB single-table design, and 
+                async Lambda — resolving WebSocket timeout and DynamoDB item size constraints via vertical partitioning.
+              </span>
+            </li>
+            <li>
+              <span>
+                <strong>ML Content Tagging (Highspot):</strong> Built a Claude 3 on Bedrock pipeline for auto-tagging 
+                training content with triple-iteration consensus filtering — cutting processing time from 30 to 5 min 
+                per document (<strong>83% reduction</strong>).
+              </span>
+            </li>
+            <li>
+              <span>
+                <strong>Badge Issuance Automation (Credly):</strong> Eliminated 3–4 FTE of monthly manual effort with 
+                a scalable zero-touch badge distribution pipeline replacing a CSV-driven, multi-dashboard process.
+              </span>
+            </li>
+            <li>
+              <span>
+                <strong>Sync Pipeline Performance:</strong> Reduced audience rule sync time from 40 minutes to 4.5 
+                minutes (<strong>88.8% faster</strong>) through strategic indexing and SQL query optimization.
+              </span>
+            </li>
+            <li>
+              <span>
+                <strong>Dataset Publishing (AWS Omni):</strong> Migrated dataset publishing via automated Airflow 
+                pipelines — cutting publish time from 14 days to 2 days (<strong>85% improvement</strong>) and unlocking 
+                self-service access for FLEX TomeAI and Quantum initiatives.
+              </span>
+            </li>
+            <li>
+              <span>
+                <strong>QuickSight RLS Audit Automation:</strong> Eliminated 1 FTE/week with an audit pipeline that 
+                auto-generates SIM tickets for datasets missing Row-Level Security, cutting audit time by 95% — 
+                enabling daily audits where manual audits took hours.
+              </span>
+            </li>
+          </ul>
+          <div class="exp-tag-row">
+            <span class="exp-tag">Amazon Bedrock</span><span class="exp-tag">Claude 3</span>
+            <span class="exp-tag">DynamoDB</span><span class="exp-tag">Lambda</span>
+            <span class="exp-tag">Airflow / MWAA</span><span class="exp-tag">Redshift</span>
+            <span class="exp-tag">QuickSight</span><span class="exp-tag">S3 / Glue</span>
+            <span class="exp-tag">Python</span><span class="exp-tag">RAG</span>
+          </div>
+        </div>
+
+        <!-- Rocket Mortgage -->
+        <div class="exp-item reveal">
+          <div class="exp-header">
+            <div class="exp-company">Rocket Mortgage</div>
+            <div class="exp-role">Senior Data Engineer</div>
+            <div class="exp-meta">Detroit, MI &nbsp;·&nbsp; Jan 2016 – Jan 2023</div>
+          </div>
+          <ul class="exp-bullets">
+            <li>
+              <span>
+                <strong>TIER 1 Mission-Critical SME:</strong> Primary owner of the system publishing real-time Team 
+                Member, Banker, and Loan data to 160+ internal and external vendor applications — zero-tolerance uptime.
+              </span>
+            </li>
+            <li>
+              <span>
+                <strong>Pandemic Health Screening:</strong> Engineered data pipelines for a badge-scan health screening 
+                solution for 30,000+ employees across all Rocket facilities during pandemic re-entry.
+              </span>
+            </li>
+            <li>
+              <span>
+                <strong>On-Prem to Cloud Migration:</strong> Led end-to-end migration of 30+ databases from on-premises 
+                SQL Server to AWS (RDS, Aurora MySQL, DynamoDB), including Terraform-based RDS modules for automated provisioning.
+              </span>
+            </li>
+            <li>
+              <span>
+                <strong>Config-Driven ETL Framework:</strong> Designed a reusable, cloud-based ETL framework for real-time 
+                Glue ingestion from RDS to S3 — reviewed and <strong>adopted org-wide</strong> by multiple teams as the 
+                company standard for cloud data ingestion.
+              </span>
+            </li>
+            <li>
+              <span>
+                <strong>Database Performance Tuning:</strong> Resolved SQL Server and RDS bottlenecks using DMVs, Extended 
+                Events, Query Store, and CloudWatch Insights across production systems serving millions of daily transactions.
+              </span>
+            </li>
+          </ul>
+          <div class="exp-tag-row">
+            <span class="exp-tag">AWS RDS</span><span class="exp-tag">Aurora MySQL</span>
+            <span class="exp-tag">DynamoDB</span><span class="exp-tag">AWS Glue</span>
+            <span class="exp-tag">SQL Server</span><span class="exp-tag">Terraform</span>
+            <span class="exp-tag">CI/CD</span><span class="exp-tag">Python</span>
+            <span class="exp-tag">Grafana</span>
+          </div>
+        </div>
+
+        <!-- Tarantula -->
+        <div class="exp-item reveal">
+          <div class="exp-header">
+            <div class="exp-company">Tarantula</div>
+            <div class="exp-role">Software Engineer — Database</div>
+            <div class="exp-meta">Hyderabad, India &nbsp;·&nbsp; Jun 2013 – Jan 2015</div>
+          </div>
+          <ul class="exp-bullets">
+            <li><span>Built SSIS packages for bulk legacy data migrations; automated manual DB operations via SQL Agent jobs.</span></li>
+            <li><span>Designed OLTP data models and engineered core database objects with targeted T-SQL performance tuning.</span></li>
+          </ul>
+          <div class="exp-tag-row">
+            <span class="exp-tag">SQL Server</span><span class="exp-tag">SSIS</span><span class="exp-tag">T-SQL</span>
+          </div>
+        </div>
+
+        <!-- Earlier -->
+        <div class="exp-item reveal">
+          <div class="exp-header">
+            <div class="exp-company">Sutherland Global Services &amp; Randstad</div>
+            <div class="exp-role">Migration Analyst</div>
+            <div class="exp-meta">Hyderabad, India &nbsp;·&nbsp; May 2010 – Jun 2013</div>
+          </div>
+          <ul class="exp-bullets">
+            <li><span>Designed ETL processes using SSIS to migrate EHR data from Oracle and flat files to SQL Server per client specs.</span></li>
+            <li><span>Managed database objects and internal/external reporting; provided production support with documented ticketing.</span></li>
+          </ul>
+          <div class="exp-tag-row">
+            <span class="exp-tag">Oracle</span><span class="exp-tag">SQL Server</span><span class="exp-tag">SSIS</span><span class="exp-tag">ETL</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="section-inner">
+      <p class="section-label reveal">Featured Work</p>
+      <h2 class="reveal">Systems built for scale.<br/>Outcomes that show in OKRs.</h2>
+      <div class="projects-grid">
+
+        <div class="project-card reveal">
+          <div>
+            <div class="project-label">GenAI · Architecture</div>
+            <div class="project-title">Field 360 — AI Field Seller Chatbot</div>
+            <div class="project-company">Amazon Web Services &nbsp;·&nbsp; 2023–2024</div>
+          </div>
+          <div class="project-impact">
+            <span class="impact-pill">Production GenAI</span>
+            <span class="impact-pill">Bedrock Knowledge Bases</span>
+            <span class="impact-pill">3+ FTE Eliminated</span>
+          </div>
+          <p class="project-desc">
+            Designed the end-to-end microservices backbone for an AI-powered chatbot serving AWS field
+            sellers globally. Resolved real WebSocket timeout constraints using async Lambda patterns
+            and solved DynamoDB item size limits via vertical partitioning — architectural decisions
+            made under production constraints, not demo conditions.
+          </p>
+          <div class="project-arch">
+            Bedrock Knowledge Bases → Lambda (async) → DynamoDB (single-table, vertical partitioned) → WebSocket API Gateway
+          </div>
+          <div class="project-tags">
+            <span class="tag">Amazon Bedrock</span><span class="tag">Claude 3</span>
+            <span class="tag">RAG</span><span class="tag">DynamoDB</span>
+            <span class="tag">Lambda</span><span class="tag">API Gateway</span><span class="tag">Python</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div>
+            <div class="project-label">ML Pipeline · Performance</div>
+            <div class="project-title">ML Auto-Tagging — Highspot Content Pipeline</div>
+            <div class="project-company">Amazon Web Services &nbsp;·&nbsp; 2024</div>
+          </div>
+          <div class="project-impact">
+            <span class="impact-pill">83% Faster Processing</span>
+            <span class="impact-pill">30 min → 5 min / doc</span>
+            <span class="impact-pill">Triple-Consensus Filtering</span>
+          </div>
+          <p class="project-desc">
+            Built a Claude 3 on Bedrock pipeline for auto-tagging 10,000+ training content assets.
+            Key innovation: triple-iteration consensus filtering to achieve high-confidence tagging
+            accuracy without human review — cutting per-document processing from 30 minutes to 5 minutes.
+          </p>
+          <div class="project-arch">
+            S3 Trigger → Glue Job → Bedrock (Claude 3, 3× consensus) → DynamoDB Tag Store → Highspot API
+          </div>
+          <div class="project-tags">
+            <span class="tag">Amazon Bedrock</span><span class="tag">Claude 3</span>
+            <span class="tag">AWS Glue</span><span class="tag">S3</span>
+            <span class="tag">Python</span><span class="tag">DynamoDB</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div>
+            <div class="project-label">Platform Engineering · Org-Wide Adoption</div>
+            <div class="project-title">Config-Driven ETL Framework — Adopted as Company Standard</div>
+            <div class="project-company">Rocket Mortgage &nbsp;·&nbsp; 2020–2021</div>
+          </div>
+          <div class="project-impact">
+            <span class="impact-pill">Org-Wide Adoption</span>
+            <span class="impact-pill">30+ DB Migrations</span>
+            <span class="impact-pill">Company Standard</span>
+          </div>
+          <p class="project-desc">
+            Designed a reusable, config-driven ETL framework for real-time Glue ingestion from RDS to S3.
+            Reviewed by senior engineering leadership and adopted org-wide as the company standard for
+            cloud data ingestion — used by multiple teams without modification.
+          </p>
+          <div class="project-arch">
+            RDS (Aurora / SQL Server) → AWS Glue (config-driven) → S3 (partitioned) → Redshift Spectrum / Athena
+          </div>
+          <div class="project-tags">
+            <span class="tag">AWS Glue</span><span class="tag">RDS</span>
+            <span class="tag">S3</span><span class="tag">Terraform</span>
+            <span class="tag">Python</span><span class="tag">Redshift</span>
+          </div>
+        </div>
+
+        <div class="project-card reveal">
+          <div>
+            <div class="project-label">Security Automation · Compliance</div>
+            <div class="project-title">QuickSight RLS Audit — Manual Hours to Daily Automation</div>
+            <div class="project-company">Amazon Web Services &nbsp;·&nbsp; 2023</div>
+          </div>
+          <div class="project-impact">
+            <span class="impact-pill">95% Audit Time Reduction</span>
+            <span class="impact-pill">1 FTE / Week Eliminated</span>
+            <span class="impact-pill">Daily vs. Monthly Cadence</span>
+          </div>
+          <p class="project-desc">
+            Engineered a pipeline that auto-audits all QuickSight datasets for Row-Level Security
+            compliance and auto-generates SIM tickets for violations — enabling daily audits where
+            manual processes previously required hours of weekly engineering time.
+          </p>
+          <div class="project-arch">
+            EventBridge (daily cron) → Lambda (RLS audit) → QuickSight API → SIM Ticket Auto-Generation → SNS Alert
+          </div>
+          <div class="project-tags">
+            <span class="tag">QuickSight</span><span class="tag">Lambda</span>
+            <span class="tag">EventBridge</span><span class="tag">Python</span>
+            <span class="tag">AWS SDK</span><span class="tag">SNS</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-inner">
+      <p class="section-label reveal">Certifications</p>
+      <h2 class="reveal">Credentials that back the work.</h2>
+      <div class="cert-grid reveal">
+
+        <div class="cert-card">
+          <div class="cert-badge">🏅</div>
+          <div class="cert-title">AWS Certified Data Engineer – Associate</div>
+          <div class="cert-org">Amazon Web Services</div>
+          <a href="https://www.credly.com/badges/9d11c069-fe51-4765-92df-8af4fe97c1d1" target="_blank" rel="noopener noreferrer" class="cert-link">View Badge ↗</a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge">🏅</div>
+          <div class="cert-title">AWS Certified Solutions Architect – Associate</div>
+          <div class="cert-org">Amazon Web Services</div>
+          <a href="https://www.credly.com/badges/ece78e64-e706-441a-9858-b7266b1ba290" target="_blank" rel="noopener noreferrer" class="cert-link">View Badge ↗</a>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge">🏅</div>
+          <div class="cert-title">AWS Certified Cloud Practitioner</div>
+          <div class="cert-org">Amazon Web Services</div>
+          <a href="https://www.credly.com/badges/6e38e3a9-606a-4077-ad1e-713d9f3d8ebc" target="_blank" rel="noopener noreferrer" class="cert-link">View Badge ↗</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" style="background: var(--bg2);">
+    <div class="section-inner">
+      <p class="section-label reveal">Education</p>
+      <h2 class="reveal">Academic foundation.</h2>
+      <div class="cert-grid reveal">
+
+        <div class="cert-card">
+          <div class="cert-badge">🎓</div>
+          <div class="cert-title">M.S. Computer Information Systems & IT</div>
+          <div class="cert-org">University of Central Missouri &nbsp;·&nbsp; 2016 &nbsp;·&nbsp; GPA 4.0</div>
+        </div>
+
+        <div class="cert-card">
+          <div class="cert-badge">🎓</div>
+          <div class="cert-title">B.Tech. Computer Science Engineering</div>
+          <div class="cert-org">JNTU, Hyderabad &nbsp;·&nbsp; 2009</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- RECOMMENDATIONS -->
+  <section id="recommendations">
+    <div class="section-inner">
+      <p class="section-label reveal">LinkedIn Recommendations</p>
+      <h2 class="reveal">What colleagues say.</h2>
+      <div class="rec-grid reveal">
+
+        <!-- 1. Manager voice + Microsoft credibility -->
+        <div class="rec-card">
+          <span class="rec-quote-mark">"</span>
+          <p class="rec-text">Nikhil is a team player and very talented. Nikhil played a crucial role in key projects at Quicken Loans and was very instrumental in their success. He goes above and beyond to do the right thing. He always challenges himself and tries to stay ahead of the game by continuous learning.</p>
+          <div class="rec-author">
+            <div class="rec-avatar">MU</div>
+            <div class="rec-author-info">
+              <a href="https://www.linkedin.com/in/nikhildayagala/details/recommendations/?detailScreenTabIndex=0" target="_blank" rel="noopener noreferrer" class="rec-author-name" style="color:var(--text);text-decoration:none;">Mahesh Uppala</a>
+              <span class="rec-author-role">Principal Data Engineering Manager at Microsoft &nbsp;·&nbsp; Jul 2019</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Most detailed, 4 years, "senior level database technologist" -->
+        <div class="rec-card">
+          <span class="rec-quote-mark">"</span>
+          <p class="rec-text">Hard-working, smart, and friendly are the words I would use to describe Nikhil. In working with Nikhil on many critical projects over the past four years, I have seen his ability to be a great team player and develop many technical solutions with ease and positivity. More than anything, I am amazed with Nikhil's ability to quickly understand, often minimal, requirements and exceed his clients expectations time after time. Whether it is teaching someone about SQL, helping someone learn SSIS, or explaining best practices for databases in the cloud, he always takes time to assist anyone that needs a hand. Nikhil would be a great fit on any team looking for a senior level database technologist.</p>
+          <div class="rec-author">
+            <div class="rec-avatar">EL</div>
+            <div class="rec-author-info">
+              <a href="https://www.linkedin.com/in/nikhildayagala/details/recommendations/?detailScreenTabIndex=0" target="_blank" rel="noopener noreferrer" class="rec-author-name" style="color:var(--text);text-decoration:none;">Eric LePoudre</a>
+              <span class="rec-author-role">Principal Database Administrator &nbsp;·&nbsp; Dec 2019</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Most recent (2023, AWS era), trust + technical ability -->
+        <div class="rec-card">
+          <span class="rec-quote-mark">"</span>
+          <p class="rec-text">Nikhil is the type of teammate who communicates well, completes tasks on time, works with a sense of pride in the outcome of his tasks, and enjoys the work he does. His ability to handle the assigned work he took on put the team at rest and let us focus in key areas knowing that he wouldn't let anything fall to the side. He brings a positive weather with him when he is interacting with the people around him that brings the team up. Nikhil's technical ability was never in question and he was able to resolve the client requests or challenges in a manner consistent with the team's expectations. I would gladly work with Nikhil again and wish him all the best in his career!</p>
+          <div class="rec-author">
+            <div class="rec-avatar">MB</div>
+            <div class="rec-author-info">
+              <a href="https://www.linkedin.com/in/nikhildayagala/details/recommendations/?detailScreenTabIndex=0" target="_blank" rel="noopener noreferrer" class="rec-author-name" style="color:var(--text);text-decoration:none;">Michael Briggs, MBA</a>
+              <span class="rec-author-role">Business and Information Technology &nbsp;·&nbsp; Jan 2023</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. SME recognition, expert in database, laser focused on client value -->
+        <div class="rec-card">
+          <span class="rec-quote-mark">"</span>
+          <p class="rec-text">I've worked with Nikhil for a couple of years now on various data related projects. He was extremely patience and very detailed in explaining how the tool works. He knows exactly what questions to ask to pin point a problem. He is quick to come up with solutions and help make sure my team understands how to fix any issues. He is an expert in all things database related and that is why he is so trusted on large projects. He is able to communicate clearly and is laser focused on delivering value for our clients. It is a true pleasure to work with him.</p>
+          <div class="rec-author">
+            <div class="rec-avatar">ED</div>
+            <div class="rec-author-info">
+              <a href="https://www.linkedin.com/in/nikhildayagala/details/recommendations/?detailScreenTabIndex=0" target="_blank" rel="noopener noreferrer" class="rec-author-name" style="color:var(--text);text-decoration:none;">Eric Duby</a>
+              <span class="rec-author-role">Senior Team Leader, Engineering &nbsp;·&nbsp; Aug 2021</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. Go-to resource, eliminates manual processes -->
+        <div class="rec-card">
+          <span class="rec-quote-mark">"</span>
+          <p class="rec-text">Nikhil is a true blessing to have in our organization. He is extremely knowledgeable and is easy to work with. He is a true team player inside and outside of his direct team making a definite impact while doing so. His technical abilities, patience, and willingness to go above and beyond what is called for makes him a go-to resource. If not for his technical expertise, we would have more manual processes that would need to be initiated.</p>
+          <div class="rec-author">
+            <div class="rec-avatar">AT</div>
+            <div class="rec-author-info">
+              <a href="https://www.linkedin.com/in/nikhildayagala/details/recommendations/?detailScreenTabIndex=0" target="_blank" rel="noopener noreferrer" class="rec-author-name" style="color:var(--text);text-decoration:none;">Atkinson Thomas</a>
+              <span class="rec-author-role">Sr. Security Specialist at Rock Security &nbsp;·&nbsp; Mar 2020</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Large-scale projects, critical role, quick execution -->
+        <div class="rec-card">
+          <span class="rec-quote-mark">"</span>
+          <p class="rec-text">I've worked with Nikhil on multiple large scale projects at Quicken Loans — each time his role was critical to ensuring our systems were getting the proper data to successfully run after the new implementation. He's always executed quickly and efficiently, asking great questions along the way, with a positive attitude and a high level of support from the beginning to end of the project. I enjoy working with Nikhil very much.</p>
+          <div class="rec-author">
+            <div class="rec-avatar">DK</div>
+            <div class="rec-author-info">
+              <a href="https://www.linkedin.com/in/nikhildayagala/details/recommendations/?detailScreenTabIndex=0" target="_blank" rel="noopener noreferrer" class="rec-author-name" style="color:var(--text);text-decoration:none;">Dakota K</a>
+              <span class="rec-author-role">Solution Architect &nbsp;·&nbsp; Aug 2019</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <p style="font-family:var(--mono);font-size:0.65rem;color:var(--muted);margin-top:2rem;letter-spacing:0.1em;text-align:center;">
+        Click any name to verify on LinkedIn ↗
+      </p>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label reveal">Contact</p>
+      <h2 class="reveal">Let's build something<br/>remarkable together.</h2>
+      <p class="contact-sub reveal">
+        Open to connecting around data engineering, GenAI systems, and cloud-native platforms.
+      </p>
+      <div class="contact-links reveal">
+        <a href="mailto:dayagalanikhil@gmail.com" class="btn btn-primary" title="dayagalanikhil@gmail.com">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+        <a href="https://linkedin.com/in/NikhilDayagala" target="_blank" rel="noopener noreferrer" class="btn btn-outline" title="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/NikhilDayagala" target="_blank" rel="noopener noreferrer" class="btn btn-outline" title="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.credly.com/users/nikhil-dayagala/badges#credly" target="_blank" rel="noopener noreferrer" class="btn btn-outline" title="Verify AWS Certifications" style="border-color:rgba(245,158,11,0.35);color:var(--amber);">
+          🏅 Verify Credentials
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BACK TO TOP -->
+  <button id="back-to-top" aria-label="Back to top">
+    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-copy">© <span id="footer-year"></span> Nikhil Dayagala. All rights reserved.</span>
+  </footer>
+
+  <script>
+    // Footer year auto-update
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // Scroll reveal with staggered delays (like index 1)
+    const reveals = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach((el, i) => {
+      el.style.transitionDelay = `${(i % 4) * 80}ms`;
+      revealObserver.observe(el);
+    });
+
+    // IntersectionObserver-based nav highlighting (smoother than scroll event)
+    const sections = document.querySelectorAll('section[id]');
+    const links = document.querySelectorAll('.nav-links a');
+    const sectionObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          links.forEach(a => {
+            a.style.color = a.getAttribute('href') === '#' + id ? 'var(--amber)' : '';
+          });
+        }
+      });
+    }, { threshold: 0.35 });
+    sections.forEach(s => sectionObserver.observe(s));
+
+    // Back to top button
+    const backToTop = document.getElementById('back-to-top');
+    window.addEventListener('scroll', () => {
+      backToTop.classList.toggle('visible', window.scrollY > 400);
+    });
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      navLinks.classList.toggle('open');
+    });
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        navLinks.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>
